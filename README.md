@@ -9,7 +9,11 @@ Then simply execute the Stored Procedure as shown in the **Example.sql** file.
 #### Parameters
 
 ****@TableToPivot****  
-The source table to perform the pivot operation on.
+The source table to perform the pivot operation on.  
+
+****@SourceQuery****  
+Optional Parameter - Allows the ability to use a source query (e.g with joins) to perform  
+the pivot on rather than just providing a source table.
 
 ****@ColumnHeadingsColumn****  
 The column in the source which contains the values to be used as column headings.
