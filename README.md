@@ -1,6 +1,8 @@
 # EasySQLPivot
 Until recently I've always had trouble with Pivoting in T-SQL.
-I decided to write this Stored Procedure to make it a little bit easier.
+I decided to write this Stored Procedure to make it a little bit easier.  
+*Disclaimer: I wouldn't recommend this Stored Procedure for use in a Production Environment. This repository  
+was just for fun and demonstrate the use of dynamic T-SQL.*
 
 ### Usage
 Usage is simple, download the Stored Procedure and create it using your preferred SQL Editor.
