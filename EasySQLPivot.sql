@@ -7,9 +7,10 @@
 
 CREATE PROCEDURE dbo.EasySQLPivot (
 	 @TableToPivot VARCHAR(128)
-	,@ColumnHeadingsColumn AS VARCHAR(128)
-	,@ColumnValuesColumn AS VARCHAR(128)
-	,@Aggregate AS VARCHAR(20)
+	,@SourceQuery NVARCHAR(MAX) = NULL
+	,@ColumnHeadingsColumn VARCHAR(128)
+	,@ColumnValuesColumn VARCHAR(128)
+	,@Aggregate VARCHAR(20)
 )
 AS
 
@@ -31,9 +32,12 @@ SET @Query = N'
 	SELECT
 		' + @Cols + '
 	FROM (
-		SELECT
-			*
-		FROM ' + @TableToPivot + '
+		' + 
+			CASE
+				WHEN @SourceQuery IS NULL THEN 'SELECT * FROM ' + @TableToPivot
+				ELSE @SourceQuery
+			END
+		 + '
 	) t
 	PIVOT (
 		' +
@@ -57,7 +61,7 @@ SET @Query = N'
 ';
 
 BEGIN TRY
-	EXEC(@Query);
+	EXEC sp_executesql @Query;
 END TRY
 BEGIN CATCH
 	PRINT 'Pivoting ' + @TableToPivot + ' Failed. Have you selected the correct aggregate function?';
