@@ -7,6 +7,7 @@
 
 EXEC dbo.EasySQLPivot 
 	@TableToPivot = 'dbo.PivotMe'
+	,@SourceQuery = N'SELECT RowID, ColumnName, ColumnValue FROM dbo.PivotMe' --This parameter is optional
 	,@ColumnHeadingsColumn = 'ColumnName'
 	,@ColumnValuesColumn = 'ColumnValue'
 	,@Aggregate = 'MAX'
